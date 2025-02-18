@@ -97,8 +97,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [Website](https://callprikol.ru)
 - [Pump.fun](https://pump.fun)
-- [Telegram](https://t.me/prikoltoken)
-- [Twitter](https://twitter.com/prikoltoken)
 
 ## 📞 Support
 
