@@ -91,7 +91,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, please join our [Telegram community](https://t.me/prikoltoken) or contact us through the website's contact form.
+For support, please join our Telegram community or contact us through the website's contact form.
 
 ## ⚠️ Disclaimer
 
