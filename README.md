@@ -77,17 +77,8 @@ npm run build
 
 - **Launch Date**: March 8, 2025, 15:00 UTC
 - **Platform**: Pump.fun
-- **Initial Market Cap**: $50,000
 - **Initial Token Price**: $0.0001
 - **Total Supply**: 1,000,000,000 PRIKOL
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## 📄 License
 
