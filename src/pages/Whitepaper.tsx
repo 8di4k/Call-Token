@@ -36,86 +36,98 @@ export default function Whitepaper() {
       const pdfHeight = pdf.internal.pageSize.getHeight();
       const margin = 10;
 
-      const sections = Array.from(content.querySelectorAll('section'));
+      // Clone the content for PDF generation
+      const clonedContent = content.cloneNode(true) as HTMLElement;
+      
+      // Create a temporary container
+      const tempContainer = document.createElement('div');
+      tempContainer.style.position = 'absolute';
+      tempContainer.style.left = '-9999px';
+      tempContainer.style.width = '1200px'; // Fixed width for consistent rendering
+      tempContainer.appendChild(clonedContent);
+      document.body.appendChild(tempContainer);
 
+      // Prepare content for PDF
+      const sections = Array.from(clonedContent.querySelectorAll('section'));
+      
+      // Process each section
       for (let i = 0; i < sections.length; i++) {
         const section = sections[i];
         
+        // Remove all animation classes and styles
+        const elements = section.querySelectorAll('*');
+        elements.forEach(el => {
+          if (el instanceof HTMLElement) {
+            // Remove Framer Motion and animation related attributes
+            el.style.transform = 'none';
+            el.style.transition = 'none';
+            el.style.animation = 'none';
+            el.style.opacity = '1';
+            
+            // Remove data attributes
+            Object.keys(el.dataset).forEach(key => {
+              delete el.dataset[key];
+            });
+
+            // Remove motion-specific classes
+            el.classList.forEach(className => {
+              if (className.includes('motion') || className.includes('animate')) {
+                el.classList.remove(className);
+              }
+            });
+          }
+        });
+
+        // Add page break for new sections except the first one
         if (i > 0) {
           pdf.addPage();
         }
 
+        // Capture the section
         const canvas = await html2canvas(section, {
           scale: 2,
           useCORS: true,
           logging: false,
+          backgroundColor: '#ffffff',
           windowWidth: 1200,
           onclone: (clonedDoc) => {
             const clonedSection = clonedDoc.querySelectorAll('section')[i];
             if (clonedSection) {
-              // Reset all animations and transitions
-              const animatedElements = clonedSection.querySelectorAll('*');
-              animatedElements.forEach(el => {
-                if (el instanceof HTMLElement) {
-                  el.style.animation = 'none';
-                  el.style.transition = 'none';
-                  el.style.transform = 'none';
-                  el.style.opacity = '1';
-                }
-              });
-
-              // Remove motion divs and transfer their children to parent
-              const motionDivs = clonedSection.querySelectorAll('[data-framer-motion]');
-              motionDivs.forEach(motionDiv => {
-                const parent = motionDiv.parentNode;
-                if (parent) {
-                  while (motionDiv.firstChild) {
-                    parent.insertBefore(motionDiv.firstChild, motionDiv);
-                  }
-                  parent.removeChild(motionDiv);
-                }
-              });
-
-              // Basic styling
+              // Apply print-specific styles
               clonedSection.style.padding = '20px';
               clonedSection.style.background = '#ffffff';
               
-              // Typography improvements
+              // Improve text rendering
               const textElements = clonedSection.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, li');
               textElements.forEach(el => {
                 if (el instanceof HTMLElement) {
                   el.style.color = '#000000';
-                  el.style.textRendering = 'optimizeLegibility';
                   el.style.opacity = '1';
-                  el.style.transform = 'none';
                 }
               });
 
-              // Heading enhancements
+              // Enhance headings
               const headings = clonedSection.querySelectorAll('h1, h2, h3, h4, h5, h6');
               headings.forEach(heading => {
                 if (heading instanceof HTMLElement) {
                   heading.style.fontWeight = '700';
                   heading.style.marginBottom = '1rem';
-                  heading.style.color = '#000000';
                 }
               });
 
-              // List improvements
+              // Improve list items
               const listItems = clonedSection.querySelectorAll('li');
               listItems.forEach(item => {
                 if (item instanceof HTMLElement) {
                   item.style.marginBottom = '0.5rem';
-                  item.style.opacity = '1';
                 }
               });
 
-              // Card improvements
+              // Enhance cards
               const cards = clonedSection.querySelectorAll('[class*="rounded"]');
               cards.forEach(card => {
                 if (card instanceof HTMLElement) {
-                  card.style.boxShadow = '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)';
-                  card.style.background = '#ffffff';
+                  card.style.boxShadow = '0 1px 3px rgba(0,0,0,0.12)';
                   card.style.borderRadius = '8px';
                   card.style.padding = '1rem';
                   card.style.margin = '0.5rem 0';
@@ -125,6 +137,7 @@ export default function Whitepaper() {
           }
         });
 
+        // Calculate dimensions for the PDF
         const availableWidth = pdfWidth - 2 * margin;
         const availableHeight = pdfHeight - 2 * margin;
         
@@ -139,10 +152,15 @@ export default function Whitepaper() {
         const x = (pdfWidth - scaledWidth) / 2;
         const y = (pdfHeight - scaledHeight) / 2;
 
+        // Add the image to PDF
         const imgData = canvas.toDataURL('image/jpeg', 1.0);
         pdf.addImage(imgData, 'JPEG', x, y, scaledWidth, scaledHeight, undefined, 'FAST');
       }
 
+      // Clean up
+      document.body.removeChild(tempContainer);
+
+      // Save the PDF
       pdf.save('PRIKOL-Whitepaper.pdf');
     } catch (error) {
       console.error('Error generating PDF:', error);
