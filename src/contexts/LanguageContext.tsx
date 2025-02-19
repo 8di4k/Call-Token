@@ -180,7 +180,7 @@ const translations = {
           title: 'Market Growth',
           description: 'Achieved significant market expansion and user base growth',
           achievements: [
-            'Surpassed 5 million active users',
+            'Surpassed million active users',
             'Enhanced platform features',
             'Built strong community presence',
             'Expanded content categories'
