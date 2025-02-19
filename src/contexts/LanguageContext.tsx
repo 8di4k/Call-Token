@@ -57,7 +57,7 @@ const translations = {
         title: 'Community First',
         description: 'Built for and by the community',
         benefit1: 'No team allocation',
-        benefit2: '90% public distribution',
+        benefit2: '80% public distribution',
         benefit3: 'Transparent development'
       }
     },
@@ -112,15 +112,15 @@ const translations = {
       distribution: {
         title: 'Fair Launch Distribution',
         public: {
-          title: 'Public Distribution (90%)',
+          title: 'Public Distribution (80%)',
           description: 'Available through Pump.fun\'s fair launch mechanism'
         },
         development: {
-          title: 'Development (5%)',
+          title: 'Development (10%)',
           description: 'Reserved for future development and platform integration'
         },
         marketing: {
-          title: 'Marketing (5%)',
+          title: 'Marketing (10%)',
           description: 'Allocated for marketing and community growth'
         },
         noTeam: {
@@ -266,9 +266,9 @@ const translations = {
       },
       distribution: {
         title: 'Fair Distribution',
-        public: 'Public Distribution: 90%',
-        development: 'Development: 5%',
-        marketing: 'Marketing: 5%',
+        public: 'Public Distribution: 80%',
+        development: 'Development: 10%',
+        marketing: 'Marketing: 10%',
         noTeam: 'No Team Allocation'
       },
       bondingCurve: {
@@ -446,15 +446,15 @@ const translations = {
       distribution: {
         title: 'Распределение при запуске',
         public: {
-          title: 'Публичное распределение (90%)',
+          title: 'Публичное распределение (80%)',
           description: 'Доступно через механизм честного запуска на Pump.fun'
         },
         development: {
-          title: 'Разработка (5%)',
+          title: 'Разработка (10%)',
           description: 'Зарезервировано для будущего развития и интеграции платформы'
         },
         marketing: {
-          title: 'Маркетинг (5%)',
+          title: 'Маркетинг (10%)',
           description: 'Выделено на маркетинг и рост сообщества'
         },
         noTeam: {
@@ -600,9 +600,9 @@ const translations = {
       },
       distribution: {
         title: 'Честное распределение',
-        public: 'Публичное распределение: 90%',
-        development: 'Разработка: 5%',
-        marketing: 'Маркетинг: 5%',
+        public: 'Публичное распределение: 80%',
+        development: 'Разработка: 10%',
+        marketing: 'Маркетинг: 10%',
         noTeam: 'Нет распределения команде'
       },
       bondingCurve: {
