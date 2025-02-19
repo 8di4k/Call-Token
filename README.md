@@ -78,7 +78,7 @@ npm run build
 - **Launch Date**: March 8, 2025, 15:00 UTC
 - **Platform**: Pump.fun
 - **Initial Token Price**: $0.0001
-- **Total Supply**: 1,000,000,000 PRIKOL
+- **Total Supply**: 1,000,000,000 $PRIKOL
 
 ## 📄 License
 
