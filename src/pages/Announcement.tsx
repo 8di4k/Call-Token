@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Rocket, Shield, Lock, Coins, ArrowRight, Globe, MessageCircle, Twitter, LineChart, Users } from 'lucide-react';
+import { Rocket, Shield, Coins, ArrowRight, Globe, MessageCircle, Twitter, LineChart, Users } from 'lucide-react';
 import { useCountdown, formatNumber } from '../utils/countdown';
 import { useLanguage } from '../contexts/LanguageContext';
 

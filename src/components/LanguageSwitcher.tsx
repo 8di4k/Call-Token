@@ -34,6 +34,7 @@ export default function LanguageSwitcher() {
             role="listbox"
             onMouseLeave={() => setIsOpen(false)}
           >
+            {/* ENGLISH */}
             <button
               onClick={() => {
                 setLanguage('en');
@@ -51,6 +52,8 @@ export default function LanguageSwitcher() {
               </span>
               English
             </button>
+
+            {/* RUSSIAN */}
             <button
               onClick={() => {
                 setLanguage('ru');
@@ -67,6 +70,25 @@ export default function LanguageSwitcher() {
                 🇷🇺
               </span>
               Русский
+            </button>
+
+            {/* KAZAKH */}
+            <button
+              onClick={() => {
+                setLanguage('kz');
+                setIsOpen(false);
+              }}
+              className={`w-full px-4 py-2 text-left text-sm transition-colors hover:bg-orange-50 flex items-center gap-2 ${
+                language === 'kz' ? 'text-primary font-medium' : 'text-gray-600'
+              }`}
+              role="option"
+              aria-selected={language === 'kz'}
+              aria-label="Switch to Kazakh"
+            >
+              <span className="w-5 h-5 rounded-full overflow-hidden inline-flex items-center justify-center bg-gray-100">
+                🇰🇿
+              </span>
+              Қазақша
             </button>
           </motion.div>
         )}

@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Target, Users, Rocket, Globe, ArrowRight, Twitter, Instagram as Telegram } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function About() {
+  const { t } = useLanguage();
+
   return (
     <div className="pt-32">
       {/* Hero Section */}
@@ -13,9 +16,11 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h1 className="text-5xl font-bold mb-6">About $PRIKOL</h1>
+            <h1 className="text-5xl font-bold mb-6">
+              {t('about.hero.title')}
+            </h1>
             <p className="text-xl text-gray-600 mb-8">
-              Discover the story behind the most innovative meme token in the crypto space
+              {t('about.hero.subtitle')}
             </p>
             <div className="flex gap-4 justify-center">
               <motion.a
@@ -26,7 +31,7 @@ export default function About() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Launch on Pump.fun <ArrowRight className="w-4 h-4" />
+                {t('about.heroButtons.launch')} <ArrowRight className="w-4 h-4" />
               </motion.a>
               <motion.a
                 href="https://callprikol.ru"
@@ -36,7 +41,7 @@ export default function About() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Visit Website <Globe className="w-4 h-4" />
+                {t('about.heroButtons.website')} <Globe className="w-4 h-4" />
               </motion.a>
             </div>
           </motion.div>
@@ -48,36 +53,34 @@ export default function About() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold mb-6">Our Mission</h2>
+              <h2 className="text-4xl font-bold mb-6">{t('about.mission.title')}</h2>
               <p className="text-lg text-gray-600 mb-6">
-                $PRIKOL aims to revolutionize the meme token space by combining humor with real utility. We believe that
-                cryptocurrency should be fun, accessible, and valuable for everyone.
+                {t('about.mission.text1')}
               </p>
               <p className="text-lg text-gray-600">
-                Our community-driven approach ensures that every holder has a voice in the project's direction, making
-                $PRIKOL truly decentralized and democratic.
+                {t('about.mission.text2')}
               </p>
             </div>
             <div className="grid grid-cols-2 gap-6">
               <ValueCard
                 icon={<Shield className="w-8 h-8" />}
-                title="Security"
-                description="Fully audited and secure smart contract"
+                title={t('about.values.security.title')}
+                description={t('about.values.security.text')}
               />
               <ValueCard
                 icon={<Target className="w-8 h-8" />}
-                title="Transparency"
-                description="Open and honest communication"
+                title={t('about.values.transparency.title')}
+                description={t('about.values.transparency.text')}
               />
               <ValueCard
                 icon={<Users className="w-8 h-8" />}
-                title="Community"
-                description="Strong and engaged community"
+                title={t('about.values.community.title')}
+                description={t('about.values.community.text')}
               />
               <ValueCard
                 icon={<Rocket className="w-8 h-8" />}
-                title="Innovation"
-                description="Continuous development and improvement"
+                title={t('about.values.innovation.title')}
+                description={t('about.values.innovation.text')}
               />
             </div>
           </div>
@@ -88,10 +91,8 @@ export default function About() {
       <section className="py-20 bg-pattern-waves">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-8">Join Our Community</h2>
-            <p className="text-xl text-gray-600 mb-12">
-              Be part of the $PRIKOL revolution and help shape the future of meme tokens
-            </p>
+            <h2 className="text-4xl font-bold mb-8">{t('about.join.title')}</h2>
+            <p className="text-xl text-gray-600 mb-12">{t('about.join.subtitle')}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <motion.a
                 href="https://t.me/prikoltoken"
@@ -104,8 +105,8 @@ export default function About() {
                   <Telegram className="w-6 h-6" />
                 </div>
                 <div className="text-left">
-                  <h3 className="font-bold text-lg">Telegram Community</h3>
-                  <p className="text-gray-600">Join our active Telegram group</p>
+                  <h3 className="font-bold text-lg">{t('about.join.telegram.title')}</h3>
+                  <p className="text-gray-600">{t('about.join.telegram.text')}</p>
                 </div>
               </motion.a>
               <motion.a
@@ -119,8 +120,8 @@ export default function About() {
                   <Twitter className="w-6 h-6" />
                 </div>
                 <div className="text-left">
-                  <h3 className="font-bold text-lg">Twitter</h3>
-                  <p className="text-gray-600">Follow us for latest updates</p>
+                  <h3 className="font-bold text-lg">{t('about.join.twitter.title')}</h3>
+                  <p className="text-gray-600">{t('about.join.twitter.text')}</p>
                 </div>
               </motion.a>
             </div>
