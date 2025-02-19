@@ -108,7 +108,7 @@ export default function Home() {
               />
               <MetricCard
                 icon={<Users />}
-                value="90%"
+                value="80%"
                 label={t('metrics.publicDistribution')}
                 sublabel={t('metrics.fairLaunch')}
               />
