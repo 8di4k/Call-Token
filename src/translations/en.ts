@@ -149,98 +149,189 @@ const en = {
       }
     },
     roadmap: {
-      title: 'Our Journey',
-      subtitle: 'From platform launch to blockchain integration - the evolution of CallPrikol.ru',
-      platformHistory: {
-        title: 'Platform History',
-        launch: {
-          year: '2017',
-          title: 'Platform Launch',
-          description: 'Successfully launched CallPrikol.ru, establishing the foundation for our digital entertainment platform',
-          achievements: [
-            'Platform infrastructure development',
-            'Core features implementation',
-            'Initial user base acquisition',
-            'Community guidelines establishment'
-          ]
-        },
-        growth: {
-          year: '2017-2025',
-          title: 'Market Growth',
-          description: 'Achieved significant market expansion and user base growth',
-          achievements: [
-            'Surpassed million active users',
-            'Enhanced platform features',
-            'Built strong community presence',
-            'Expanded content categories'
-          ]
-        }
-      },
-      currentDevelopment: {
-        title: 'Current Development (2025)',
-        token: {
-          title: '$PRIKOL Token',
-          items: [
-            'Native Solana token launch',
-            'Fair distribution model',
-            'Community governance',
-            'Reward mechanisms'
-          ]
-        },
-        security: {
-          title: 'Security & Infrastructure',
-          items: [
-            'Enhanced platform security',
-            'Scalability improvements',
-            'Performance optimization',
-            'DDoS protection'
-          ]
-        },
-        blockchain: {
-          title: 'Blockchain Integration',
-          items: [
-            'Smart contract development',
-            'Web3 wallet integration',
-            'Token utility features',
-            'Cross-chain compatibility'
-          ]
-        }
-      },
-      futureVision: {
-        title: 'Future Vision (2025+)',
-        phases: {
-          q3: {
-            phase: 'Q3 2025',
-            title: 'Global Expansion',
-            items: [
-              'Multi-language support rollout',
-              'Regional content partnerships',
-              'Local community building',
-              'Cultural adaptation features'
+        title: 'Our Journey',
+        subtitle: 'From platform launch to blockchain integration – the evolution of CallPrikol.ru',
+    
+        overview: {
+          title: 'Call-Prikol Overview',
+    
+          whatIsCallPrikol: {
+            title: 'What is Call-Prikol?',
+            bullets: [
+              'A web-based service that lets users send prank calls and greetings.',
+              'Operating since 2017, it has over 7 years of experience in the CIS and Russian market.',
+              'Users select a prank (voice script), the service calls a friend and records the reaction, then sends the recording back for sharing.'
             ]
           },
-          q4: {
-            phase: 'Q4 2025',
-            title: 'Platform Enhancement',
-            items: [
-              'Advanced content recommendation system',
-              'AI-powered moderation tools',
-              'Interactive content creation tools',
-              'Enhanced user engagement features'
+    
+          currentReach: {
+            title: 'Current Reach and Achievements',
+            bullets: [
+              'More than 6.2 million active users in Russia.',
+              'Over 1 million social-media subscribers (Telegram, VK, etc.).',
+              '200+ unique pranks developed.',
+              'Total revenue above $5 million so far.',
+              'Advertising deals with brands like 1XBet, Russian Radio, and Sber Mobile.'
             ]
           },
-          q1: {
-            phase: 'Q1 2026',
-            title: 'Ecosystem Development',
-            items: [
-              'Creator marketplace launch',
-              'NFT integration',
-              'Decentralized content storage',
-              'Advanced tokenomics features'
+    
+          technologySetup: {
+            title: 'Technology Setup',
+            bullets: [
+              'Available via VK bot, Telegram bot, and a dedicated website.',
+              'Uses private telephony systems for scalability.',
+              'Plans to introduce advanced AI for real-time, interactive prank calls.'
+            ]
+          },
+    
+          // NEW MARKETS SECTION
+          markets: {
+            title: 'Regional Market Potentials',
+    
+            india: {
+              title: 'Potential in the Indian Market',
+              bullets: [
+                'India has 1.4 billion people, with 65% under age 35—aligned with Call-Prikol’s key audience.',
+                'Estimated revenue could be 10.5 times larger than in Russia if market share is replicated.',
+                'Average prank price: $0.30; projected monthly orders: 1.3 million; annual income: ~$4.8 million.'
+              ]
+            },
+    
+            usa: {
+              title: 'Potential in the U.S. Market',
+              bullets: [
+                'Population of over 330 million, with a tech-savvy younger demographic.',
+                'High social media usage across popular platforms like Instagram, TikTok, and YouTube.',
+                'Estimated average prank price: $0.50; potential monthly orders in the hundreds of thousands; significant annual revenue possible.'
+              ]
+            },
+    
+            kazakhstan: {
+              title: 'Potential in the Kazakh Market',
+              bullets: [
+                'Population of nearly 20 million, with a substantial portion under 35.',
+                'Growing digital adoption and social media usage across Telegram, VK, and Instagram.',
+                'Average prank price could be around $0.25; monthly orders expected in tens of thousands, with room to scale.'
+              ]
+            }
+          },
+    
+          financial: {
+            title: 'Financial Background',
+            bullets: [
+              '$3 million already invested in development (IT, telephony, marketing, branding).',
+              'Notable spends: $1.72 million on IT (bots, speech recognition, etc.)',
+              '$250k on hardware/intangibles (GSM gateways, script creation).',
+              '$1.04 million on marketing, advertising, and SEO.'
+            ]
+          },
+    
+          brandPromotion: {
+            title: 'Brand Promotion and AI Plans',
+            bullets: [
+              'Promoted in Russia by influencers (bloggers, streamers, celebrities).',
+              'Uses basic speech recognition to detect voicemail or unsuccessful calls.',
+              'Plans to integrate advanced AI (character.AI) for more realistic, dynamic conversations.'
             ]
           }
+        },
+    
+        developmentRoadmap: {
+          platformHistory: {
+            title: 'Platform History',
+            launch: {
+              year: '2017',
+              title: 'Platform Launch',
+              description:
+                'Successfully launched CallPrikol.ru, establishing the foundation for our digital entertainment platform',
+              achievements: [
+                'Platform infrastructure development',
+                'Core features implementation',
+                'Initial user base acquisition',
+                'Community guidelines establishment'
+              ]
+            },
+            growth: {
+              year: '2017-2025',
+              title: 'Market Growth',
+              description:
+                'Achieved significant market expansion and user base growth',
+              achievements: [
+                'Surpassed million active users',
+                'Enhanced platform features',
+                'Built strong community presence',
+                'Expanded content categories'
+              ]
+            }
+          },
+    
+          currentDevelopment: {
+            title: 'Current Development (2025)',
+            token: {
+              title: '$PRIKOL Token',
+              items: [
+                'Native Solana token launch',
+                'Fair distribution model',
+                'Community governance',
+                'Reward mechanisms'
+              ]
+            },
+            security: {
+              title: 'Security & Infrastructure',
+              items: [
+                'Enhanced platform security',
+                'Scalability improvements',
+                'Performance optimization',
+                'DDoS protection'
+              ]
+            },
+            blockchain: {
+              title: 'Blockchain Integration',
+              items: [
+                'Smart contract development',
+                'Web3 wallet integration',
+                'Token utility features',
+                'Cross-chain compatibility'
+              ]
+            }
+          },
+    
+          futureVision: {
+            title: 'Future Vision (2025+)',
+            phases: {
+              q3: {
+                phase: 'Q3 2025',
+                title: 'Global Expansion',
+                items: [
+                  'Multi-language support rollout',
+                  'Regional content partnerships',
+                  'Local community building',
+                  'Cultural adaptation features'
+                ]
+              },
+              q4: {
+                phase: 'Q4 2025',
+                title: 'Platform Enhancement',
+                items: [
+                  'Advanced content recommendation system',
+                  'AI-powered moderation tools',
+                  'Interactive content creation tools',
+                  'Enhanced user engagement features'
+                ]
+              },
+              q1: {
+                phase: 'Q1 2026',
+                title: 'Ecosystem Development',
+                items: [
+                  'Creator marketplace launch',
+                  'NFT integration',
+                  'Decentralized content storage',
+                  'Advanced tokenomics features'
+                ]
+              }
+            }
+          }
         }
-      }
     },
     announcement: {
       title: '$PRIKOL Token Launch',
