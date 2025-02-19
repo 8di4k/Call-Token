@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Rocket, Shield, Users, Coins, Lock, Target, Globe, ArrowRight } from 'lucide-react';
+import { FileText, ArrowRight } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { useLocation } from 'react-router-dom';
@@ -38,7 +38,7 @@ export default function Whitepaper() {
 
       // Clone the content for PDF generation
       const clonedContent = content.cloneNode(true) as HTMLElement;
-      
+
       // Create a temporary container
       const tempContainer = document.createElement('div');
       tempContainer.style.position = 'absolute';
@@ -49,28 +49,27 @@ export default function Whitepaper() {
 
       // Prepare content for PDF
       const sections = Array.from(clonedContent.querySelectorAll('section'));
-      
+
       // Process each section
       for (let i = 0; i < sections.length; i++) {
         const section = sections[i];
-        
-        // Remove all animation classes and styles
+
+        // Remove animation classes and styles
         const elements = section.querySelectorAll('*');
-        elements.forEach(el => {
+        elements.forEach((el) => {
           if (el instanceof HTMLElement) {
-            // Remove Framer Motion and animation related attributes
             el.style.transform = 'none';
             el.style.transition = 'none';
             el.style.animation = 'none';
             el.style.opacity = '1';
-            
+
             // Remove data attributes
-            Object.keys(el.dataset).forEach(key => {
+            Object.keys(el.dataset).forEach((key) => {
               delete el.dataset[key];
             });
 
             // Remove motion-specific classes
-            el.classList.forEach(className => {
+            el.classList.forEach((className) => {
               if (className.includes('motion') || className.includes('animate')) {
                 el.classList.remove(className);
               }
@@ -78,7 +77,7 @@ export default function Whitepaper() {
           }
         });
 
-        // Add page break for new sections except the first one
+        // Add a new page for each section (except the first)
         if (i > 0) {
           pdf.addPage();
         }
@@ -96,10 +95,12 @@ export default function Whitepaper() {
               // Apply print-specific styles
               clonedSection.style.padding = '20px';
               clonedSection.style.background = '#ffffff';
-              
+
               // Improve text rendering
-              const textElements = clonedSection.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, li');
-              textElements.forEach(el => {
+              const textElements = clonedSection.querySelectorAll(
+                'p, h1, h2, h3, h4, h5, h6, span, li'
+              );
+              textElements.forEach((el) => {
                 if (el instanceof HTMLElement) {
                   el.style.color = '#000000';
                   el.style.opacity = '1';
@@ -108,7 +109,7 @@ export default function Whitepaper() {
 
               // Enhance headings
               const headings = clonedSection.querySelectorAll('h1, h2, h3, h4, h5, h6');
-              headings.forEach(heading => {
+              headings.forEach((heading) => {
                 if (heading instanceof HTMLElement) {
                   heading.style.fontWeight = '700';
                   heading.style.marginBottom = '1rem';
@@ -117,7 +118,7 @@ export default function Whitepaper() {
 
               // Improve list items
               const listItems = clonedSection.querySelectorAll('li');
-              listItems.forEach(item => {
+              listItems.forEach((item) => {
                 if (item instanceof HTMLElement) {
                   item.style.marginBottom = '0.5rem';
                 }
@@ -125,7 +126,7 @@ export default function Whitepaper() {
 
               // Enhance cards
               const cards = clonedSection.querySelectorAll('[class*="rounded"]');
-              cards.forEach(card => {
+              cards.forEach((card) => {
                 if (card instanceof HTMLElement) {
                   card.style.boxShadow = '0 1px 3px rgba(0,0,0,0.12)';
                   card.style.borderRadius = '8px';
@@ -134,21 +135,21 @@ export default function Whitepaper() {
                 }
               });
             }
-          }
+          },
         });
 
         // Calculate dimensions for the PDF
         const availableWidth = pdfWidth - 2 * margin;
         const availableHeight = pdfHeight - 2 * margin;
-        
+
         const scale = Math.min(
           availableWidth / canvas.width,
           availableHeight / canvas.height
         );
-        
+
         const scaledWidth = canvas.width * scale;
         const scaledHeight = canvas.height * scale;
-        
+
         const x = (pdfWidth - scaledWidth) / 2;
         const y = (pdfHeight - scaledHeight) / 2;
 
@@ -184,7 +185,7 @@ export default function Whitepaper() {
             </div>
             <h1 className="text-5xl font-bold mb-6">$PRIKOL Whitepaper</h1>
             <p className="text-xl text-gray-600 mb-8">
-              Technical documentation and vision for the most memeable token on Solana
+              Fair launch, bonding curve, and the path to meme greatness on Solana.
             </p>
             <div className="flex gap-4 justify-center">
               <motion.button
@@ -213,270 +214,330 @@ export default function Whitepaper() {
                     <h3 className="text-xl font-bold mb-4">1. Introduction</h3>
                     <ul className="space-y-2">
                       <li className="text-gray-600 hover:text-primary">
-                        <a href="#background">1.1 Background</a>
-                      </li>
-                      <li className="text-gray-600 hover:text-primary">
-                        <a href="#vision">1.2 Vision & Mission</a>
-                      </li>
-                      <li className="text-gray-600 hover:text-primary">
-                        <a href="#market">1.3 Market Analysis</a>
+                        <a href="#introduction">1.1 Overview & Fair Launch</a>
                       </li>
                     </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-4">2. Technical Details</h3>
+                    <h3 className="text-xl font-bold mt-8 mb-4">2. Meme Token Landscape</h3>
                     <ul className="space-y-2">
                       <li className="text-gray-600 hover:text-primary">
-                        <a href="#token">2.1 Token Specifications</a>
-                      </li>
-                      <li className="text-gray-600 hover:text-primary">
-                        <a href="#smart-contract">2.2 Smart Contract</a>
-                      </li>
-                      <li className="text-gray-600 hover:text-primary">
-                        <a href="#security">2.3 Security Measures</a>
+                        <a href="#meme-landscape">2.1 Historical Context</a>
                       </li>
                     </ul>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Content Sections */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto space-y-20">
-              {/* Introduction */}
-              <div id="background">
-                <h2 className="text-3xl font-bold mb-6">1. Introduction</h2>
-                <div className="prose max-w-none">
-                  <h3 className="text-2xl font-bold mb-4">1.1 Background</h3>
-                  <p className="text-gray-600 mb-6">
-                    CallPrikol.ru has been a cornerstone of online entertainment in the CIS region since 2017, 
-                    delivering viral pranks and memorable content to millions of users. The platform's success 
-                    in creating engaging, community-driven content has led to the natural evolution into the 
-                    blockchain space with the creation of $PRIKOL token.
-                  </p>
-                  <p className="text-gray-600 mb-6">
-                    $PRIKOL represents the intersection of meme culture, entertainment, and decentralized finance, 
-                    bringing the spirit of CallPrikol.ru to the Solana blockchain. This whitepaper outlines our 
-                    vision, technical specifications, and roadmap for creating a sustainable and engaging token 
-                    ecosystem.
-                  </p>
-                </div>
-
-                <div id="vision" className="mt-12">
-                  <h3 className="text-2xl font-bold mb-4">1.2 Vision & Mission</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-                    <VisionCard
-                      icon={<Target className="w-6 h-6" />}
-                      title="Vision"
-                      description="To become the leading entertainment-backed token in the Solana ecosystem, bridging traditional content platforms with blockchain technology."
-                    />
-                    <VisionCard
-                      icon={<Users className="w-6 h-6" />}
-                      title="Mission"
-                      description="Empower our community with a token that reflects the fun, engaging spirit of CallPrikol.ru while providing real utility and value."
-                    />
-                  </div>
-                </div>
-
-                <div id="market" className="mt-12">
-                  <h3 className="text-2xl font-bold mb-4">1.3 Market Analysis</h3>
-                  <div className="bg-white p-6 rounded-xl shadow-lg">
-                    <h4 className="text-xl font-bold mb-4">Market Overview</h4>
-                    <ul className="space-y-4">
-                      <MarketPoint
-                        title="Meme Token Market"
-                        description="The meme token market cap exceeded $20 billion in 2024, showing significant growth potential."
-                      />
-                      <MarketPoint
-                        title="Solana Ecosystem"
-                        description="Solana's high performance and low fees make it ideal for community-driven tokens."
-                      />
-                      <MarketPoint
-                        title="Entertainment Integration"
-                        description="Growing trend of entertainment platforms launching their own tokens for enhanced user engagement."
-                      />
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Technical Details */}
-              <div id="token">
-                <h2 className="text-3xl font-bold mb-6">2. Technical Details</h2>
-                <div className="space-y-12">
                   <div>
-                    <h3 className="text-2xl font-bold mb-4">2.1 Token Specifications</h3>
-                    <div className="bg-white p-6 rounded-xl shadow-lg">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <SpecItem
-                          label="Token Name"
-                          value="$PRIKOL"
-                        />
-                        <SpecItem
-                          label="Token Type"
-                          value="SPL Token (Solana)"
-                        />
-                        <SpecItem
-                          label="Total Supply"
-                          value="1,000,000,000"
-                        />
-                        <SpecItem
-                          label="Initial Price"
-                          value="$0.0001"
-                        />
-                        <SpecItem
-                          label="Launch Platform"
-                          value="Pump.fun"
-                        />
-                        <SpecItem
-                          label="Launch Date"
-                          value="March 8, 2025 15:00 UTC"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div id="smart-contract">
-                    <h3 className="text-2xl font-bold mb-4">2.2 Smart Contract</h3>
-                    <div className="bg-white p-6 rounded-xl shadow-lg">
-                      <h4 className="text-xl font-bold mb-4">Contract Features</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <ContractFeature
-                          icon={<Lock className="w-6 h-6" />}
-                          title="Security"
-                          description="Audited by CertiK with time-locked liquidity and anti-bot measures"
-                        />
-                        <ContractFeature
-                          icon={<Coins className="w-6 h-6" />}
-                          title="Transaction Tax"
-                          description="1% tax split between liquidity (0.5%) and marketing (0.5%)"
-                        />
-                        <ContractFeature
-                          icon={<Shield className="w-6 h-6" />}
-                          title="Anti-Dump"
-                          description="Maximum transaction limits to prevent price manipulation"
-                        />
-                        <ContractFeature
-                          icon={<Globe className="w-6 h-6" />}
-                          title="Transparency"
-                          description="Verified source code and public team information"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div id="security">
-                    <h3 className="text-2xl font-bold mb-4">2.3 Security Measures</h3>
-                    <div className="bg-white p-6 rounded-xl shadow-lg">
-                      <ul className="space-y-4">
-                        <SecurityMeasure
-                          title="Smart Contract Audit"
-                          description="Complete audit by CertiK with all findings addressed"
-                        />
-                        <SecurityMeasure
-                          title="Liquidity Lock"
-                          description="Initial liquidity locked for 1 year through trusted third party"
-                        />
-                        <SecurityMeasure
-                          title="Team KYC"
-                          description="Team verified through trusted KYC provider"
-                        />
-                        <SecurityMeasure
-                          title="Anti-Bot Protection"
-                          description="Advanced measures to prevent bot manipulation at launch"
-                        />
-                      </ul>
-                    </div>
+                    <h3 className="text-xl font-bold mb-4">3. Technical Architecture</h3>
+                    <ul className="space-y-2">
+                      <li className="text-gray-600 hover:text-primary">
+                        <a href="#technical-architecture">3.1 SPL Token & Smart Contracts</a>
+                      </li>
+                    </ul>
+                    <h3 className="text-xl font-bold mt-8 mb-4">4. Tokenomics & Beyond</h3>
+                    <ul className="space-y-2">
+                      <li className="text-gray-600 hover:text-primary">
+                        <a href="#tokenomics">4.1 Fair Launch & Distribution</a>
+                      </li>
+                      <li className="text-gray-600 hover:text-primary">
+                        <a href="#utility">5. Utility & Ecosystem</a>
+                      </li>
+                      <li className="text-gray-600 hover:text-primary">
+                        <a href="#roadmap">6. Launch & Roadmap</a>
+                      </li>
+                      <li className="text-gray-600 hover:text-primary">
+                        <a href="#security">7. Security Features</a>
+                      </li>
+                      <li className="text-gray-600 hover:text-primary">
+                        <a href="#governance">8. Governance & Community</a>
+                      </li>
+                      <li className="text-gray-600 hover:text-primary">
+                        <a href="#risk-factors">9. Risk Factors</a>
+                      </li>
+                      <li className="text-gray-600 hover:text-primary">
+                        <a href="#conclusion">10. Conclusion</a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        {/* 1. Introduction */}
+        <section id="introduction" className="py-20">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl font-bold mb-6">1. Introduction</h2>
+            <p className="text-gray-600 mb-6">
+              <strong>PRIKOL</strong> is a Solana-based meme token that combines the fun of
+              internet culture with the speed and low fees of the Solana blockchain. The
+              project aspires to cultivate a vibrant community, tapping into viral memes,
+              NFTs, and broader crypto adoption.
+            </p>
+            <p className="text-gray-600 mb-6">
+              Through a <strong>fair launch</strong> on Pump.fun, PRIKOL ensures that every
+              participant starts on equal footing—there is no presale and no special token
+              allocation for the team. This approach fosters trust, transparency, and
+              widespread community ownership from day one.
+            </p>
+            <p className="text-gray-600 mb-6">
+              PRIKOL’s vision is to redefine what a meme token can be by offering fair and
+              transparent token distribution, community-driven growth, and an ecosystem that
+              merges meme culture, NFTs, and other blockchain innovations on Solana.
+            </p>
+          </div>
+        </section>
+
+        {/* 2. Meme Token Landscape */}
+        <section id="meme-landscape" className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl font-bold mb-6">2. Meme Token Landscape</h2>
+            <p className="text-gray-600 mb-6">
+              Meme tokens have shown the power of community-led promotions and viral
+              marketing. Yet, many have suffered from short-lived hype cycles due to
+              negligible utility, unequal distributions, and limited sustainability after
+              the initial excitement fades.
+            </p>
+            <p className="text-gray-600 mb-6">
+              <strong>PRIKOL</strong> tackles these challenges by:
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-gray-600 mb-6">
+              <li>
+                Conducting a <strong>fair launch</strong>—no presale and no team tokens
+              </li>
+              <li>
+                Offering <strong>transparent tokenomics</strong>, with no hidden allocations
+              </li>
+              <li>
+                Fostering <strong>long-term value</strong> through community events, NFT
+                drops, and potential future utility
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* 3. Technical Architecture */}
+        <section id="technical-architecture" className="py-20">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl font-bold mb-6">3. Technical Architecture</h2>
+            <p className="text-gray-600 mb-6">
+              PRIKOL uses the <strong>SPL (Solana Program Library)</strong> token standard,
+              ensuring seamless integration with Solana wallets, decentralized exchanges
+              (DEXs), and NFT platforms. Key parameters:
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-gray-600 mb-6">
+              <li>
+                <strong>Symbol:</strong> PRIKOL
+              </li>
+              <li>
+                <strong>Total Supply:</strong> 1,000,000,000
+              </li>
+              <li>
+                <strong>Decimal Precision:</strong> Typically 9 on Solana
+              </li>
+            </ul>
+            <p className="text-gray-600 mb-6">
+              All tokens are minted at inception, with no further minting. Any future burns
+              would be subject to community governance. To maintain integrity and trust,
+              security audits and best practices (e.g., multi-sig for upgrade authority) are
+              prioritized.
+            </p>
+          </div>
+        </section>
+
+        {/* 4. Tokenomics */}
+        <section id="tokenomics" className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl font-bold mb-6">4. Tokenomics</h2>
+            <h3 className="text-2xl font-bold mb-4">Fair Launch Details</h3>
+            <p className="text-gray-600 mb-6">
+              PRIKOL ensures fairness by having <strong>no presale</strong> and{' '}
+              <strong>no team tokens</strong>. Everyone can purchase tokens at the same
+              starting price on Pump.fun.
+            </p>
+            <h3 className="text-2xl font-bold mb-4">Distribution Breakdown</h3>
+            <ul className="list-disc list-inside space-y-2 text-gray-600 mb-6">
+              <li>
+                <strong>Public Distribution:</strong> 80%
+              </li>
+              <li>
+                <strong>Development:</strong> 10%
+              </li>
+              <li>
+                <strong>Marketing:</strong> 10%
+              </li>
+              <li>
+                <strong>Team Allocation:</strong> 0%
+              </li>
+            </ul>
+            <h3 className="text-2xl font-bold mb-4">Bonding Curve Model</h3>
+            <p className="text-gray-600 mb-6">
+              PRIKOL employs a <strong>bonding curve</strong> during launch, which adjusts
+              the token price dynamically based on demand:
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-gray-600 mb-6">
+              <li>
+                <strong>Dynamic Pricing:</strong> Each purchase pushes the price slightly
+                higher
+              </li>
+              <li>
+                <strong>Automatic Liquidity Generation:</strong> Helps stabilize trading
+                conditions
+              </li>
+              <li>
+                <strong>No Maximum Buy Limit:</strong> Users can purchase any amount
+              </li>
+            </ul>
+            <p className="text-gray-600 mb-6">
+              The initial price is set at <strong>$0.0001</strong> per PRIKOL. As more
+              tokens are bought, the bonding curve naturally increases the token price.
+            </p>
+          </div>
+        </section>
+
+        {/* 5. Utility & Ecosystem */}
+        <section id="utility" className="py-20">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl font-bold mb-6">5. Utility & Ecosystem</h2>
+            <p className="text-gray-600 mb-6">
+              At its core, PRIKOL aims to build a <strong>meme-driven community</strong>
+              while integrating practical features:
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-gray-600 mb-6">
+              <li>
+                <strong>Community Engagement:</strong> Meme contests, artwork competitions,
+                and social media campaigns.
+              </li>
+              <li>
+                <strong>NFT & Collectibles:</strong> PRIKOL-branded NFTs, cross-project
+                collaborations, and potential in-game integrations.
+              </li>
+              <li>
+                <strong>Future Expansion:</strong> Potential staking rewards, additional
+                listings on DEXs/CEXs, and partnerships with DeFi or NFT platforms.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* 6. Launch & Roadmap */}
+        <section id="roadmap" className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl font-bold mb-6">6. Launch & Roadmap</h2>
+            <p className="text-gray-600 mb-6">
+              PRIKOL’s fair launch on Pump.fun offers an advanced anti-bot mechanism and
+              ensures a level playing field. The roadmap below outlines key milestones:
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-gray-600 mb-6">
+              <li>
+                <strong>Phase 1:</strong> Token launch & bonding curve activation, initial
+                liquidity setup.
+              </li>
+              <li>
+                <strong>Phase 2:</strong> Listings on Solana DEXs, NFT collectible releases,
+                meme competitions.
+              </li>
+              <li>
+                <strong>Phase 3:</strong> Potential DAO formation, staking rewards (if
+                approved), cross-chain bridges.
+              </li>
+              <li>
+                <strong>Phase 4:</strong> Continued marketing, partnership expansions, and
+                feature updates based on community feedback.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* 7. Security Features */}
+        <section id="security" className="py-20">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl font-bold mb-6">7. Security Features</h2>
+            <p className="text-gray-600 mb-6">
+              PRIKOL prioritizes safety and transparency through:
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-gray-600 mb-6">
+              <li>
+                <strong>Smart Contract & Platform Audits:</strong> The SPL standard and
+                optional audits for any custom contracts.
+              </li>
+              <li>
+                <strong>Anti-Bot Protection:</strong> Pump.fun’s fair launch mechanism
+                reduces front-running and bot activity.
+              </li>
+              <li>
+                <strong>Ongoing Security Reviews:</strong> Regular code reviews, potential
+                third-party audits, and community-based checks.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* 8. Governance & Community */}
+        <section id="governance" className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl font-bold mb-6">8. Governance & Community</h2>
+            <p className="text-gray-600 mb-6">
+              PRIKOL is built on the premise that the <strong>community</strong> drives the
+              project’s direction:
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-gray-600 mb-6">
+              <li>
+                <strong>Community-Driven Development:</strong> Token holders can propose and
+                vote on protocol changes, marketing campaigns, or partnerships.
+              </li>
+              <li>
+                <strong>Transparency:</strong> Open communication through official channels
+                (e.g., Twitter, Discord, Telegram).
+              </li>
+              <li>
+                <strong>Financial Clarity:</strong> Clear reporting on how development and
+                marketing funds (10% each) are utilized.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* 9. Risk Factors */}
+        <section id="risk-factors" className="py-20">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl font-bold mb-6">9. Risk Factors</h2>
+            <p className="text-gray-600 mb-6">
+              <strong>Market Volatility:</strong> Meme tokens can be subject to extreme price
+              fluctuations.  
+            </p>
+            <p className="text-gray-600 mb-6">
+              <strong>Regulatory Uncertainty:</strong> Cryptocurrency regulations differ by
+              jurisdiction and can rapidly evolve.
+            </p>
+            <p className="text-gray-600 mb-6">
+              <strong>Smart Contract Risks:</strong> Code vulnerabilities may emerge over
+              time, highlighting the need for audits and community vigilance.
+            </p>
+            <p className="text-gray-600 mb-6">
+              <strong>Community Dependence:</strong> Meme tokens thrive on community
+              engagement; diminished interest can affect long-term viability.
+            </p>
+          </div>
+        </section>
+
+        {/* 10. Conclusion */}
+        <section id="conclusion" className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl font-bold mb-6">10. Conclusion</h2>
+            <p className="text-gray-600 mb-6">
+              PRIKOL Token embodies <strong>fairness, transparency, and fun</strong> on
+              Solana’s high-performance blockchain. By adopting a fair launch, bonding curve,
+              and robust security measures, PRIKOL aims to build a lasting community-driven
+              ecosystem that merges the playful nature of meme culture with real token
+              utility.
+            </p>
+            <p className="text-gray-600 mb-6">
+              <em>Disclaimer: This document is for informational purposes only and does not
+              constitute financial or legal advice. Participation in cryptocurrency projects
+              entails risk—always conduct your own due diligence.</em>
+            </p>
+          </div>
+        </section>
       </div>
     </div>
-  );
-}
-
-function VisionCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="bg-white p-6 rounded-xl shadow-lg"
-      data-framer-motion
-    >
-      <div className="text-primary mb-4">{icon}</div>
-      <h4 className="text-xl font-bold mb-2">{title}</h4>
-      <p className="text-gray-600">{description}</p>
-    </motion.div>
-  );
-}
-
-function MarketPoint({ title, description }: { title: string; description: string }) {
-  return (
-    <motion.li
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      className="flex items-start gap-4"
-      data-framer-motion
-    >
-      <div className="w-2 h-2 rounded-full bg-primary mt-2" />
-      <div>
-        <h5 className="font-bold mb-1">{title}</h5>
-        <p className="text-gray-600">{description}</p>
-      </div>
-    </motion.li>
-  );
-}
-
-function SpecItem({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-center justify-between">
-      <span className="text-gray-600">{label}:</span>
-      <span className="font-bold">{value}</span>
-    </div>
-  );
-}
-
-function ContractFeature({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="flex items-start gap-4"
-      data-framer-motion
-    >
-      <div className="text-primary">{icon}</div>
-      <div>
-        <h5 className="font-bold mb-1">{title}</h5>
-        <p className="text-gray-600 text-sm">{description}</p>
-      </div>
-    </motion.div>
-  );
-}
-
-function SecurityMeasure({ title, description }: { title: string; description: string }) {
-  return (
-    <motion.li
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      className="flex items-start gap-4"
-      data-framer-motion
-    >
-      <div className="w-2 h-2 rounded-full bg-primary mt-2" />
-      <div>
-        <h5 className="font-bold mb-1">{title}</h5>
-        <p className="text-gray-600">{description}</p>
-      </div>
-    </motion.li>
   );
 }
